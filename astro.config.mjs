@@ -29,7 +29,7 @@ export default defineConfig({
     }),
     solidJs({
       devtools: true,
-      include: ['**/solid/*'],
+      include: ['**/solid/*', '**/solid/svgs/*'],
     })
   ],
 });

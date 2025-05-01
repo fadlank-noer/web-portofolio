@@ -1,0 +1,10 @@
+.rotated-socmed {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+}
+
+.diagonal-arrow-up {
+    background-color: red;
+    -webkit-mask: url(../public/assets/diagonal-up-right-arrow.svg) no-repeat center;
+    mask: url(../public/assets/diagonal-up-right-arrow.svg) no-repeat center;
+}
