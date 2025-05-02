@@ -22,14 +22,14 @@ export default defineConfig({
     svelte(), 
     vue(),
     preact({
-      include: ['**/preact/*'],
+      include: ['**/preact/**'],
     }),
     react({
-      include: ['**/react/*'],
+      include: ['**/react/**'],
     }),
     solidJs({
       devtools: true,
-      include: ['**/solid/*', '**/solid/svgs/*'],
+      include: ['**/solid/**'],
     })
   ],
 });

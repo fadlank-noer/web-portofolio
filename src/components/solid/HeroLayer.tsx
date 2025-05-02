@@ -1,7 +1,17 @@
+import { createSignal } from "solid-js";
 import "../../../styles/HeroLayer.css";
-import DiagonalArrow from "./svgs/DiagonalArrow";
+import Assets from "./ui/Assets";
 
 const HeroLayer = () => {
+  // State Management
+  const [cvCount, setCvCount] = createSignal(0);
+
+  function openCV () {
+    setCvCount((count) => count + 1);
+    //window.open('/files/cv-fadlan.pdf');
+
+    console.log("CV Terunduh: ", cvCount());
+  }
 
   return (
     <div class="hero-container w-screen h-screen bg-(--primary-color) text-(--text-color-one) flex items-center justify-center">
@@ -16,12 +26,24 @@ const HeroLayer = () => {
 
           <p><span class="font-bold italic">Software Engineer</span> based in <span class="font-bold italic">Indonesia</span></p>
 
-          <div class="button-cv flex items-center justify-center my-[48px] w-[258px] h-[56px] bg-white text-(--primary-color)">
+          <div 
+            class="button-cv flex items-center justify-center my-[48px] w-[258px] h-[56px] bg-white text-(--primary-color)"
+            onClick={() => openCV()}
+          >
             <p class="mr-3">Know me by my CV!</p>
 
-            <div class="w-6 h-6 flex justify-center items-center bg-linear-to-tr from-[#44749d] via-[#44749d] to-(--text-color-one)">
-              <DiagonalArrow className="w-4" fill="var(--text-color-one)"/>
+            <div class="w-6 h-6 flex justify-center items-center bg-linear-to-tr from-(--primary-color) via-(--primary-color) to-(--gradient-first)">
+              <Assets 
+                assetName="diagonal-arrow"
+                attribute={() => {
+                  return {
+                    className: "w-3",
+                    fill: "#ffffff"
+                  } 
+                }} 
+              />
             </div>
+          {/* Close button-cv */}
           </div>
 
           <div class="hero-contact flex text-xs">
