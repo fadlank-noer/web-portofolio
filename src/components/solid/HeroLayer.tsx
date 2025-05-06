@@ -1,6 +1,7 @@
 import { createSignal } from "solid-js";
 import "../../../styles/HeroLayer.css";
 import Assets from "./ui/Assets";
+import ContactMe from "./ui/ContactMe";
 
 const HeroLayer = () => {
   // State Management
@@ -45,41 +46,9 @@ const HeroLayer = () => {
             </div>
           {/* Close button-cv */}
           </div>
-
-          <div class="hero-contact flex text-sm justify-between">
-
-            <div class="phone-container flex-1 flex items-center">
-              <div class="w-6 h-6 bg-(--text-color-two) flex items-center justify-center mr-3 rounded-xl">
-                <Assets 
-                  assetName="phone"
-                  attribute={() => {
-                    return {
-                      className: "w-4",
-                      fill: "#000000"
-                    } 
-                  }} 
-                />
-              </div>
-              <p>+62 895-3528-37926</p>
-            </div>
-
-            <div class="email-container flex-1 flex items-center">
-              <div class="w-6 h-6 bg-(--text-color-two) flex items-center justify-center mr-3 rounded-xl">
-                <Assets
-                  assetName="email"
-                  attribute={() => {
-                    return {
-                      className: "w-4",
-                      fill: "#000000"
-                    } 
-                  }} 
-                />
-              </div>
-              <p>fadlank.noer@gmail.com</p>
-            </div>
-
-          {/* Close hero-contact */}
-          </div>
+          
+          {/* Contact Me Through this Component*/}
+          <ContactMe />
 
         </div>
 
@@ -89,8 +58,18 @@ const HeroLayer = () => {
         </div>
 
         {/* Socmed Floating */}
-        <div class="rotated-socmed shrink-2">
-          <p>parameter</p>
+        <div class="rotated-socmed bg-red-700 h-[50%] mx-auto">
+          <p>Parameter</p>
+          
+          <div class="floating-bar">
+
+          </div>
+          
+          <div class="redirect-socmed">
+
+          </div>
+
+          
         </div>
 
       {/* Close flex-container */}
