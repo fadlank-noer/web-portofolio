@@ -1,7 +1,9 @@
 import { createSignal } from "solid-js";
+import { redirect } from "@solidjs/router";
 import "../../../styles/HeroLayer.css";
 import Assets from "./ui/Assets";
 import ContactMe from "./ui/ContactMe";
+import RoundedIcon from "./ui/RoundedIcon";
 
 const HeroLayer = () => {
   // State Management
@@ -9,9 +11,15 @@ const HeroLayer = () => {
 
   function openCV () {
     setCvCount((count) => count + 1);
-    //window.open('/files/cv-fadlan.pdf');
+    window.open('/files/cv-fadlan.pdf');
 
     console.log("CV Terunduh: ", cvCount());
+  }
+
+  function redirectHref () {
+    window.open('https://google.com', '_blank');
+
+    // console.log("CV Terunduh: ", cvCount());
   }
 
   return (
@@ -28,7 +36,7 @@ const HeroLayer = () => {
           <p><span class="font-bold italic">Software Engineer</span> based in <span class="font-bold italic">Indonesia</span></p>
 
           <div 
-            class="button-cv flex items-center justify-center my-[48px] w-[258px] h-[56px] bg-white text-(--primary-color)"
+            class="cursor-pointer button-cv flex items-center justify-center my-[48px] w-[258px] h-[56px] bg-white text-(--primary-color)"
             onClick={() => openCV()}
           >
             <p class="mr-3">Know me by my CV!</p>
@@ -58,15 +66,16 @@ const HeroLayer = () => {
         </div>
 
         {/* Socmed Floating */}
-        <div class="rotated-socmed bg-red-700 h-[50%] mx-auto">
-          <p>Parameter</p>
+        <div class="rotated-socmed h-[70%] w-10 my-auto flex flex-col justify-between items-center">
           
-          <div class="floating-bar">
-
+          {/* Socmed Group */}
+          <div class="h-[45%] flex flex-col justify-between" onClick={() => redirectHref()}>
+            <RoundedIcon assetName="github" rotate="-rotate-90" />
+            <RoundedIcon assetName="upwork" rotate="-rotate-90" />
+            <RoundedIcon assetName="x-com"  rotate="-rotate-90" />
           </div>
-          
-          <div class="redirect-socmed">
 
+          <div class="floating-bar w-[15%] h-[50%] rounded-sm bg-(--text-color-two)">
           </div>
 
           
