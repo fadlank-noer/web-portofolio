@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js";
-import { redirect } from "@solidjs/router";
 import "../../../styles/HeroLayer.css";
 import Assets from "./ui/Assets";
 import ContactMe from "./ui/ContactMe";
@@ -28,8 +27,19 @@ const HeroLayer = () => {
 
         {/* Left Side Hero */}
         <div class="left-side-text-container basis-sm my-auto">
+          
+          {/* Semi Circle Accessories */}
+          <div class="left-side-semicircle relative z-10 w-[180px] h-[45px]">
+            <div 
+              style={
+                "border-radius: 50% / 0 0 100% 100%;"
+              }
+              class="absolute top-16 -left-10 w-full h-full -rotate-35 bg-linear-to-tr from-(--gradient-first) to-(--gradient-second)"
+            >
+            </div>
+          </div>
 
-          <p class="text-6xl text-justify">MY NAME IS <b>FADLAN NOER...</b></p>
+          <p class="text-6xl text-justify relative z-40">MY NAME IS <b>FADLAN NOER...</b></p>
 
           <br/>
 
@@ -61,8 +71,35 @@ const HeroLayer = () => {
         </div>
 
         {/* Right Side Hero */}
-        <div class="img-container">
-          <img src="/assets/half-body.png" class="w-70"/>
+        <div class="img-container flex items-center">
+          <div class="flex-container w-full h-full">
+
+            {/* Top Accessories */}
+            <div class="relative z-1">
+              <div 
+                style={
+                  "border-radius: 50% / 100% 100% 0 0;"
+                }
+                class="absolute w-80 h-25 -rotate-30 bg-linear-to-tr from-(--gradient-first) to-(--gradient-second) top-20 -left-10"   
+              >
+              </div>
+            </div>
+
+            {/* Second Accesories */}
+            <div class="relative z-3">
+              <div 
+                style={
+                  "border-radius: 0 50% 0 50% / 0 50% 0 50%;"
+                }
+                class="absolute w-80 h-25 -rotate-30 bg-linear-to-tr from-(--gradient-first)/25 to-(--gradient-second) top-31.5 -right-10"   
+              >
+              </div>
+            </div>
+            
+            {/* Image Section */}
+            <img src="/assets/half-body.png" class="w-90 z-2 relative"/>
+
+          </div>
         </div>
 
         {/* Socmed Floating */}
