@@ -2,7 +2,7 @@ import Assets from "./Assets";
 
 const ContactMe = () => {
     return (
-        <div class="hero-contact flex text-sm justify-between">
+        <div class="hero-contact flex flex-col items-center lg:flex-row text-sm justify-between">
 
             <div class="phone-container flex-1 flex items-center">
               <div class="w-6 h-6 bg-(--text-color-two) flex items-center justify-center mr-3 rounded-xl">

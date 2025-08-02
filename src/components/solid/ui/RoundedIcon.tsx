@@ -25,7 +25,7 @@ const RoundedIcon = (props: any) => {
 
     return (
         <div 
-            class={`cursor-pointer w-[40px] h-[40px] bg-(--text-color-two) flex items-center justify-center rounded-full ${prop_value.rotate}`}
+            class={`cursor-pointer w-10 h-10 bg-(--text-color-two) flex items-center justify-center rounded-full ${prop_value.rotate}`}
             onClick={() => redirectHref()}
         >
             <Assets assetName={prop_value.assetName} />

@@ -3,6 +3,7 @@
 
 * {
 	font-family: "IBM Plex Sans", sans-serif;
+	font-size: 1.5rem;
 }
 
 :root {
@@ -15,4 +16,6 @@
 
 	--text-color-one: #FFFFFF;
 	--text-color-two: #E0E1DD;
+
+	--container-height: 70vh;
 }
