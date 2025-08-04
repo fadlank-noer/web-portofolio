@@ -11,20 +11,12 @@ const HeroLayer = () => {
     function openCV () {
         setCvCount((count) => count + 1);
         window.open('/files/cv-fadlan.pdf');
-
-        console.log("CV Terunduh: ", cvCount());
-    }
-
-    function redirectHref () {
-        window.open('https://google.com', '_blank');
-
-        // console.log("CV Terunduh: ", cvCount());
     }
 
     return (
-        <div class="w-screen h-(--container-height) bg-(--primary-color) text-(--text-color-one)">
+        <div id="anchor-hero" class="w-screen h-full bg-(--primary-color) text-(--text-color-one) pb-7 text-4xl">
             {/* Main Container */}
-            <div class="container w-full h-full flex flex-col lg:flex-row items-center">
+            <div class="container mx-auto w-full h-full flex flex-col lg:flex-row items-center">
                 
                 {/* Photo Comes First */}
                 <div class="img-container flex items-center">
@@ -45,12 +37,12 @@ const HeroLayer = () => {
                 <div class="text-and-button-container px-3">
                     
                     {/* Name and Job */}
-                    <p class="text-center mt-15 lg:mt-0">MY NAME IS <b>FADLAN KAUTSAR NOER...</b></p>
+                    <p class="text-center my-8 lg:mt-0">MY NAME IS <b>FADLAN KAUTSAR NOER...</b></p>
                     <p class="text-center"><span class="font-bold italic">Software Engineer</span> based in <span class="font-bold italic">Indonesia</span></p>
 
                     {/* CV Button */}
                     <div 
-                        class="flex items-center justify-center my-7 mx-auto w-75 h-15 bg-white text-(--primary-color)"
+                        class="flex items-center justify-center my-7 mx-auto w-100 h-15 bg-white text-(--primary-color)"
                         onClick={() => openCV()}
                     >
                         <p class="mr-3">Know me by my CV!</p>
@@ -84,8 +76,6 @@ const HeroLayer = () => {
                     </div>
                 </div>
                 
-
-
             </div>
         </div>
     )

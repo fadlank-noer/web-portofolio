@@ -2,6 +2,7 @@
 import "../../styles/global.css";
 import Head from "../components/Head.astro"
 import HeroLayer from "../components/solid/HeroLayer.tsx"
+import Experience from "../components/vue/Experience.vue";
 ---
 
 <html lang="en">
@@ -9,6 +10,7 @@ import HeroLayer from "../components/solid/HeroLayer.tsx"
 		<Head />
 	</head>
 	<body>
-		<HeroLayer client:load /> 
+		<HeroLayer client:load />
+		<Experience client:load /> 
 	</body>
 </html>
