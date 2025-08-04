@@ -36,7 +36,7 @@ const options = (assetName: string, attribute: any) => {
     "github": GithubIcon
   }
 
-  return (components as any)[assetName](attributeValue?.className ?? "w-5", attributeValue?.fill ?? "#000000");
+  return (components as any)[assetName](attributeValue?.className ?? "w-7", attributeValue?.fill ?? "#000000");
 }
 
 const Assets = (props: any) => {
