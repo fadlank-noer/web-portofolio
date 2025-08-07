@@ -1,6 +1,7 @@
 ---
 import "../../styles/global.css";
 import Head from "../components/Head.astro"
+import Navbar from "../components/alpine/Navbar.astro";
 import HeroLayer from "../components/solid/HeroLayer.tsx"
 import Experience from "../components/vue/Experience.vue";
 ---
@@ -10,6 +11,7 @@ import Experience from "../components/vue/Experience.vue";
 		<Head />
 	</head>
 	<body>
+		<Navbar/>
 		<HeroLayer client:load />
 		<Experience client:load /> 
 	</body>

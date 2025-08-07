@@ -1,0 +1,45 @@
+
+
+
+<nav class="z-100 border-b shadow-md bg-(--primary-color) sticky top-0" x-data="{ open: false }">
+    <div class="px-10 h-[10vw] flex items-center justify-between">
+        <!-- Logo -->
+        <img 
+            src="/assets/logo.png" 
+            alt="logo" 
+            class="max-h-[9vw]"
+        >
+
+        <!-- Mobile Navbar Version -->
+        <button x-on:click="open = !open" class="text-gray-700 focus:outline-none max-h-[9vw] lg:hidden">
+            <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-11 w-11" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-11 w-11" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        
+
+
+    </div>
+
+    <!-- Mobile Opened Version -->
+    <div
+        x-show="open"
+        x-on:click="open = !open"
+        x-transition 
+        class="lg:hidden absolute z-101 h-screen w-screen bg-gray-200/75"
+    >
+        <ul class="space-y-10 text-gray-700 text-center text-5xl font-medium">
+            <li><a href="#anchor-hero" class="block py-2">Home</a></li>
+            <li><a href="#anchor-experience" class="block py-2">Experience</a></li>
+        </ul>
+    </div>
+</nav>
+
