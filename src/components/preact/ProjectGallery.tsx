@@ -16,7 +16,7 @@ const projects: Project[] = [
     id: 1,
     title: "Valtara Trade System",
     description: "Trading platform with real-time market data and portfolio management.",
-    image: "https://placehold.co/56x56/cccccc/000000/png?text=M",
+    image: "assets/projects/robo-trade.png",
     category: "System",
     technologies: ["MQL5", "Python"],
     demoUrl: "#",
@@ -26,7 +26,7 @@ const projects: Project[] = [
     id: 2,
     title: "Portfolio Website",
     description: "Modern portfolio website showcasing multiple frontend frameworks.",
-    image: "/assets/projects/web-portofolio.png",
+    image: "assets/projects/web-portofolio.png",
     category: "Fullstack",
     technologies: ["Astro", "React", "Vue", "Svelte", "Tailwind"],
     demoUrl: "#",
@@ -37,6 +37,8 @@ const projects: Project[] = [
 const ProjectGallery = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const categories = ['All', 'Fullstack', 'System'];
 
@@ -86,83 +88,31 @@ const ProjectGallery = () => {
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                  onLoad={(e) => {
-                    // Hide loading overlay when image loads
-                    const loadingDiv = e.currentTarget.parentElement?.querySelector('.loading-overlay') as HTMLElement;
-                    if (loadingDiv) {
-                      loadingDiv.style.opacity = '0';
-                    }
-                  }}
-                  onError={(e) => {
-                    // Show fallback when image fails
-                    const fallbackDiv = e.currentTarget.parentElement?.querySelector('.fallback-overlay') as HTMLElement;
-                    const loadingDiv = e.currentTarget.parentElement?.querySelector('.loading-overlay') as HTMLElement;
-                    if (fallbackDiv) {
-                      fallbackDiv.style.opacity = '1';
-                    }
-                    if (loadingDiv) {
-                      loadingDiv.style.opacity = '0';
-                    }
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-                
-                {/* Loading placeholder */}
-                <div className="loading-overlay absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] flex items-center justify-center opacity-100 transition-opacity duration-300">
-                  <div className="text-center">
-                    <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-                    <p className="text-white text-sm">Loading...</p>
-                  </div>
-                </div>
-
-                {/* Main overlay with title */}
-                <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center pointer-events-none">
-                  <span className="text-white text-lg font-bold drop-shadow-lg">{project.title}</span>
-                </div>
-
-                {/* Interactive overlay with links */}
-                {hoveredProject === project.id && (
-                  <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center space-x-4 transition-opacity duration-300 z-10">
-                    {project.demoUrl && (
-                      <a
-                        href={project.demoUrl}
-                        className="bg-white text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors cursor-pointer z-20"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Demo
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer z-20"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Code
-                      </a>
-                    )}
-                  </div>
-                )}
-
-                {/* Fallback for broken images */}
-                <div className="fallback-overlay absolute inset-0 opacity-0 flex items-center justify-center bg-gradient-to-br from-gray-300 to-gray-400 transition-opacity duration-300">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg">
-                      <span className="text-gray-600 text-2xl">📷</span>
+              {/* Project Image Preview Button */}
+              <div className="relative h-48 bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] rounded-t-xl overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center">
+                  <button
+                    onClick={() => {
+                      setPreviewImage(project.image);
+                      setShowPreview(true);
+                    }}
+                    className="bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-lg p-4 transition-all duration-300 group"
+                    aria-label={`Preview ${project.title}`}
+                  >
+                    <div className="text-center">
+                      <svg className="w-12 h-12 mx-auto mb-2 text-white group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      <p className="text-white font-medium">Preview Image</p>
+                      <p className="text-white/80 text-sm">Click to view</p>
                     </div>
-                    <p className="text-white font-medium">{project.title}</p>
-                    <p className="text-gray-200 text-sm">Image not available</p>
-                  </div>
+                  </button>
+                </div>
+
+                {/* Title overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-3">
+                  <h3 className="text-white font-bold text-lg truncate">{project.title}</h3>
                 </div>
               </div>
 
@@ -202,6 +152,48 @@ const ProjectGallery = () => {
           </div>
         )}
       </div>
+
+      {/* Image Preview Modal */}
+      {showPreview && previewImage && (
+        <div 
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => {
+            setShowPreview(false);
+            setPreviewImage(null);
+          }}
+        >
+          <div 
+            className="relative max-w-4xl max-h-[90vh] bg-white rounded-lg overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => {
+                setShowPreview(false);
+                setPreviewImage(null);
+              }}
+              className="absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors z-10"
+              aria-label="Close preview"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+
+            {/* Image */}
+            <img 
+              src={previewImage} 
+              alt="Project preview"
+              className="w-full h-full object-contain max-h-[80vh]"
+              onError={() => {
+                setShowPreview(false);
+                setPreviewImage(null);
+              }}
+            />
+
+          </div>
+        </div>
+      )}
     </div>
   );
 };
