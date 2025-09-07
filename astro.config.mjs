@@ -15,11 +15,6 @@ import vue from "@astrojs/vue";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-    esbuild: {
-      jsxFactory: 'h',
-      jsxFragment: 'Fragment',
-      jsx: 'automatic',
-    },
     resolve: {
       alias: {
         'react': 'preact/compat',

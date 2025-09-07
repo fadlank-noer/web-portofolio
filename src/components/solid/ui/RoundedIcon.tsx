@@ -1,3 +1,5 @@
+/** @jsxImportSource solid-js */
+
 import Assets from "./Assets";
 
 const RoundedIcon = (props: any) => {
@@ -5,7 +7,7 @@ const RoundedIcon = (props: any) => {
     const prop_value = {
         assetName: props.assetName,
         rotate: props?.rotate ?? "",
-        className: props?.className ?? ""
+        class: props?.class ?? ""
     }
 
     //Redirect Route
@@ -26,7 +28,7 @@ const RoundedIcon = (props: any) => {
 
     return (
         <div 
-            className={`cursor-pointer w-15 h-15 bg-(--text-color-two) flex items-center justify-center rounded-full ${prop_value.rotate} ${prop_value.className}`}
+            class={`cursor-pointer w-15 h-15 bg-(--text-color-two) flex items-center justify-center rounded-full ${prop_value.rotate} ${prop_value.class}`}
             onClick={() => redirectHref()}
         >
             <Assets assetName={prop_value.assetName} />

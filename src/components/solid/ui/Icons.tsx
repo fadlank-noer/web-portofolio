@@ -1,6 +1,6 @@
 export const DiagonalArrowIcon = (className: string, fill: string) => {
     return (
-        <svg class={className} viewBox="0 0 15 16" xmlns="http://www.w3.org/2000/svg">
+        <svg className={className} viewBox="0 0 15 16" xmlns="http://www.w3.org/2000/svg">
             <path d="M5.0002 0.80011V2.72011H11.3266L0.200195 13.8465L1.5538 15.2001L12.6802 4.07371V10.4001H14.6002V0.80011H5.0002Z" fill={fill}/>
         </svg>
     )
@@ -8,7 +8,7 @@ export const DiagonalArrowIcon = (className: string, fill: string) => {
 
 export const EmailIcon = (className: string, fill: string) => {
   return (
-    <svg class={className} viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M3.49422 0.634521C2.06897 0.634521 0.913574 1.78992 0.913574 3.21517V11.8173C0.913574 13.2426 2.06897 14.398 3.49422 14.398H15.5372C16.9625 14.398 18.1179 13.2426 18.1179 11.8173V3.21517C18.1179 1.78992 16.9625 0.634521 15.5372 0.634521H3.49422ZM2.71255 2.85554C2.84873 2.56006 3.14752 2.35495 3.49422 2.35495H15.5372C15.8839 2.35495 16.1827 2.56006 16.3189 2.85554L10.0438 7.73614C9.73321 7.97774 9.29824 7.97774 8.9876 7.73614L2.71255 2.85554ZM2.634 4.974V9.98072L5.74163 7.39104L2.634 4.974ZM2.70532 12.1608C2.83792 12.4649 3.14124 12.6775 3.49422 12.6775H15.5372C15.8902 12.6775 16.1935 12.4649 16.3261 12.1608L11.8998 8.47217L11.1001 9.09416C10.1682 9.81897 8.86326 9.81897 7.93136 9.09416L7.13166 8.47217L2.70532 12.1608ZM16.3974 9.98072V4.974L13.2898 7.39104L16.3974 9.98072Z" fill={fill}/>
     </svg>    
   )
@@ -16,7 +16,7 @@ export const EmailIcon = (className: string, fill: string) => {
 
 export const GithubIcon = (className: string, fill: string) => {
     return (
-        <svg class={className} viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg className={className} viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
     
             <title>github [#142]</title>
             <desc>Created with Sketch.</desc>
@@ -35,7 +35,7 @@ export const GithubIcon = (className: string, fill: string) => {
 
 export const PhoneIcon = (className: string, fill: string) => {
     return (
-        <svg class={className} viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className={className} viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M1.43322 2.00348C2.94493 0.491777 5.39589 0.491777 6.9076 2.00348C8.4193 3.51519 8.4193 5.96615 6.9076 7.47786C6.34491 8.04055 5.65209 8.39379 4.92601 8.53759L7.06439 10.676C7.20819 9.9499 7.56144 9.25707 8.12413 8.69439C9.63583 7.18268 12.0868 7.18268 13.5985 8.69439C15.1102 10.2061 15.1102 12.6571 13.5985 14.1688C12.1896 15.5777 9.96483 15.6735 8.44496 14.4562L8.42826 14.4729L8.12413 14.1688L1.43322 7.47786L1.12909 7.17373L1.1458 7.15702C-0.0714932 5.63715 0.0243155 3.41239 1.43322 2.00348ZM9.34065 12.9522C10.1805 13.7921 11.5421 13.7921 12.382 12.9522C13.2218 12.1124 13.2218 10.7508 12.382 9.91091C11.5421 9.07108 10.1805 9.07108 9.34065 9.91091C8.50082 10.7508 8.50082 12.1124 9.34065 12.9522ZM5.69107 6.26133C4.85123 7.10117 3.48959 7.10117 2.64975 6.26133C1.80991 5.42149 1.80991 4.05985 2.64975 3.22001C3.48959 2.38017 4.85123 2.38017 5.69107 3.22001C6.53091 4.05985 6.53091 5.42149 5.69107 6.26133Z" fill={fill}/>
         </svg>
     )
@@ -43,7 +43,7 @@ export const PhoneIcon = (className: string, fill: string) => {
 
 export const UpworkIcon = (className: string, fill: string) => {
     return (
-        <svg class={className} fill={fill} width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <svg className={className} fill={fill} width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.75 17.542c-1.469 0-2.849-0.62-4.099-1.635l0.302-1.432 0.010-0.057c0.276-1.521 1.13-4.078 3.786-4.078 1.99 0 3.604 1.615 3.604 3.604 0 1.984-1.615 3.599-3.604 3.599zM24.75 6.693c-3.385 0-6.016 2.198-7.083 5.818-1.625-2.443-2.865-5.38-3.583-7.854h-3.646v9.484c-0.005 1.875-1.521 3.391-3.396 3.396-1.875-0.005-3.391-1.526-3.396-3.396v-9.484h-3.646v9.484c0 3.885 3.161 7.068 7.042 7.068 3.885 0 7.042-3.182 7.042-7.068v-1.589c0.708 1.474 1.578 2.974 2.635 4.297l-2.234 10.495h3.729l1.62-7.615c1.417 0.906 3.047 1.479 4.917 1.479 4 0 7.25-3.271 7.25-7.266 0-4-3.25-7.25-7.25-7.25z"/>
         </svg>
     )
@@ -51,7 +51,7 @@ export const UpworkIcon = (className: string, fill: string) => {
 
 export const XSocialMedia = (className: string, fill: string) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" class={className} shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 462.799">
+        <svg xmlns="http://www.w3.org/2000/svg" className={className} shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 462.799">
             <path fill={fill} fill-rule="nonzero" d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z"/>
         </svg>
     )

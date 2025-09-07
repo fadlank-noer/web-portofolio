@@ -1,3 +1,5 @@
+/** @jsxImportSource solid-js */
+
 import { Dynamic } from "solid-js/web"; 
 import {
   DiagonalArrowIcon,

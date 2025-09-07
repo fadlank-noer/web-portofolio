@@ -78,20 +78,20 @@ const ProjectGallery = () => {
         </div>
 
         {/* Projects Grid */}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map(project => (
             <div
               key={project.id}
-              class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
               {/* Project Image */}
-              <div class="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   onLoad={(e) => {
                     // Hide loading overlay when image loads
                     const loadingDiv = e.currentTarget.parentElement?.querySelector('.loading-overlay') as HTMLElement;
@@ -114,25 +114,25 @@ const ProjectGallery = () => {
                 />
                 
                 {/* Loading placeholder */}
-                <div class="loading-overlay absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] flex items-center justify-center opacity-100 transition-opacity duration-300">
-                  <div class="text-center">
-                    <div class="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-                    <p class="text-white text-sm">Loading...</p>
+                <div className="loading-overlay absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] flex items-center justify-center opacity-100 transition-opacity duration-300">
+                  <div className="text-center">
+                    <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+                    <p className="text-white text-sm">Loading...</p>
                   </div>
                 </div>
 
                 {/* Main overlay with title */}
-                <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center pointer-events-none">
-                  <span class="text-white text-lg font-bold drop-shadow-lg">{project.title}</span>
+                <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center pointer-events-none">
+                  <span className="text-white text-lg font-bold drop-shadow-lg">{project.title}</span>
                 </div>
 
                 {/* Interactive overlay with links */}
                 {hoveredProject === project.id && (
-                  <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center space-x-4 transition-opacity duration-300 z-10">
+                  <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center space-x-4 transition-opacity duration-300 z-10">
                     {project.demoUrl && (
                       <a
                         href={project.demoUrl}
-                        class="bg-white text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors cursor-pointer z-20"
+                        className="bg-white text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors cursor-pointer z-20"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -143,7 +143,7 @@ const ProjectGallery = () => {
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
-                        class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer z-20"
+                        className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors cursor-pointer z-20"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -155,36 +155,36 @@ const ProjectGallery = () => {
                 )}
 
                 {/* Fallback for broken images */}
-                <div class="fallback-overlay absolute inset-0 opacity-0 flex items-center justify-center bg-gradient-to-br from-gray-300 to-gray-400 transition-opacity duration-300">
-                  <div class="text-center">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg">
-                      <span class="text-gray-600 text-2xl">📷</span>
+                <div className="fallback-overlay absolute inset-0 opacity-0 flex items-center justify-center bg-gradient-to-br from-gray-300 to-gray-400 transition-opacity duration-300">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg">
+                      <span className="text-gray-600 text-2xl">📷</span>
                     </div>
-                    <p class="text-white font-medium">{project.title}</p>
-                    <p class="text-gray-200 text-sm">Image not available</p>
+                    <p className="text-white font-medium">{project.title}</p>
+                    <p className="text-gray-200 text-sm">Image not available</p>
                   </div>
                 </div>
               </div>
 
               {/* Project Info */}
-              <div class="p-6">
-                <div class="flex justify-between items-start mb-3">
-                  <h3 class="text-xl font-bold text-gray-800">{project.title}</h3>
-                  <span class="text-xs font-medium text-[var(--primary-color)] bg-[var(--primary-color)]/10 px-2 py-1 rounded-full">
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
+                  <span className="text-xs font-medium text-[var(--primary-color)] bg-[var(--primary-color)]/10 px-2 py-1 rounded-full">
                     {project.category}
                   </span>
                 </div>
                 
-                <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div class="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {project.technologies.map(tech => (
                     <span 
                       key={tech}
-                      class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md font-medium"
+                      className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-md font-medium"
                     >
                       {tech}
                     </span>
