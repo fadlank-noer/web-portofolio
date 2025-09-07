@@ -13,9 +13,9 @@ npm run dev
 ## Rules and Conditions
 1. Must consist of all different frameworks integrations as a component.
     - alpinejs (Navbar)
-    - preact
-    - react
     - solidjs (Hero Layer)
-    - svelte
     - vue (My Experience)
+    - preact (Projects)
+    - react (Testimonial)
+    - svelte (Contact)
 1. More TailwindCSS Sytle than Native CSS.

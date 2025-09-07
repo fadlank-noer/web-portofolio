@@ -14,13 +14,13 @@ const HeroLayer = () => {
     }
 
     return (
-        <div id="anchor-hero" class="w-screen h-full bg-(--primary-color) text-(--text-color-one) pb-7 text-4xl">
+        <div id="anchor-hero" className="w-screen min-h-screen bg-(--primary-color) text-(--text-color-one) pb-7 text-4xl">
             {/* Main Container */}
-            <div class="container mx-auto w-full h-full flex flex-col lg:flex-row items-center">
+            <div className="container mx-auto w-full h-full flex flex-col lg:flex-row items-center justify-center px-4 py-8">
                 
                 {/* Photo Comes First */}
-                <div class="img-container flex items-center">
-                    <div class="flex-container">        
+                <div className="img-container flex items-center">
+                    <div className="flex-container">        
                         {/* Accesories */}
                         <Accesories assetNumber={1} />
                         <Accesories assetNumber={2} />
@@ -29,24 +29,24 @@ const HeroLayer = () => {
                         <Accesories assetNumber={5} />
                         
                         {/* Image Section */}
-                        <img src="/assets/half-body.png" class="w-90 z-2 relative"/>
+                        <img src="/assets/half-body.png" className="w-90 z-2 relative"/>
                     </div>
                 </div>
 
                 {/* Text And Button CV */}
-                <div class="text-and-button-container px-3">
+                <div className="text-and-button-container px-3">
                     
                     {/* Name and Job */}
-                    <p class="text-center my-8 lg:mt-0">MY NAME IS <b>FADLAN KAUTSAR NOER...</b></p>
-                    <p class="text-center"><span class="font-bold italic">Software Engineer</span> based in <span class="font-bold italic">Indonesia</span></p>
+                    <p className="text-center my-8 lg:mt-0">MY NAME IS <b>FADLAN KAUTSAR NOER...</b></p>
+                    <p className="text-center"><span className="font-bold italic">Software Engineer</span> based in <span className="font-bold italic">Indonesia</span></p>
 
                     {/* CV Button */}
-                    <div 
-                        class="flex items-center justify-center my-7 mx-auto w-100 h-15 bg-white text-(--primary-color)"
+                    <button 
+                       className="flex items-center justify-center my-7 mx-auto w-100 h-15 bg-white text-(--primary-color) rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
                         onClick={() => openCV()}
                     >
-                        <p class="mr-3">Know me by my CV!</p>
-                        <div class="w-6 h-6 flex justify-center items-center bg-linear-to-tr from-(--primary-color) via-(--primary-color) to-(--gradient-first)">
+                        <p className="mr-3 font-semibold">Know me by my CV!</p>
+                        <div className="w-6 h-6 flex justify-center items-center bg-gradient-to-tr from-(--primary-color) via-(--primary-color) to-(--gradient-first) rounded">
                         <Assets 
                             assetName="diagonal-arrow"
                             attribute={() => {
@@ -57,22 +57,22 @@ const HeroLayer = () => {
                             }} 
                         />
                         </div>
-                    </div>
+                    </button>
 
                     {/* Contact Me Through this Component*/}
                     <ContactMe />
                 </div>
 
                 {/* Social Media */}
-                <div class="socmed-container w-90 mt-10">
+                <div className="socmed-container w-90 mt-10">
                     {/* Floating Bar */}
-                    <div class="floating-bar w-full h-1.5 rounded-sm bg-(--text-color-two)"/>
+                    <div className="floating-bar h-1.5 w-full lg:h-full lg:w-1.5 rounded-sm bg-(--text-color-two)"/>
 
                     {/* Socmed Links Horizontal */}
-                    <div class="w-65 mx-auto mt-5 flex flex-row content-center lg:hidden justify-between">
-                        <RoundedIcon assetName="github"/>
-                        <RoundedIcon assetName="upwork"/>
-                        <RoundedIcon assetName="x-com" />
+                    <div className="w-65 mx-auto mt-5 flex flex-row lg:flex-col content-center justify-between">
+                        <RoundedIcon assetName="github" className="lg:mb-2"/>
+                        <RoundedIcon assetName="upwork" className="lg:mb-2"/>
+                        <RoundedIcon assetName="x-com" className="lg:mb-2"/>
                     </div>
                 </div>
                 

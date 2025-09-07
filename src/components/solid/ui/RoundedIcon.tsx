@@ -4,7 +4,8 @@ const RoundedIcon = (props: any) => {
     //Destructure a Props
     const prop_value = {
         assetName: props.assetName,
-        rotate: props?.rotate ?? ""
+        rotate: props?.rotate ?? "",
+        className: props?.className ?? ""
     }
 
     //Redirect Route
@@ -25,7 +26,7 @@ const RoundedIcon = (props: any) => {
 
     return (
         <div 
-            class={`cursor-pointer w-15 h-15 bg-(--text-color-two) flex items-center justify-center rounded-full ${prop_value.rotate}`}
+            className={`cursor-pointer w-15 h-15 bg-(--text-color-two) flex items-center justify-center rounded-full ${prop_value.rotate} ${prop_value.className}`}
             onClick={() => redirectHref()}
         >
             <Assets assetName={prop_value.assetName} />

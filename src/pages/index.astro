@@ -4,6 +4,9 @@ import Head from "../components/Head.astro"
 import Navbar from "../components/alpine/Navbar.astro";
 import HeroLayer from "../components/solid/HeroLayer.tsx"
 import Experience from "../components/vue/Experience.vue";
+import ProjectGallery from "../components/preact/ProjectGallery.tsx";
+import Testimonials from "../components/react/Testimonials.tsx";
+import ContactForm from "../components/svelte/ContactForm.svelte";
 ---
 
 <html lang="en">
@@ -14,5 +17,8 @@ import Experience from "../components/vue/Experience.vue";
 		<Navbar/>
 		<HeroLayer client:load />
 		<Experience client:load /> 
+		<ProjectGallery client:load />
+		<Testimonials client:load />
+		<ContactForm client:load />
 	</body>
 </html>

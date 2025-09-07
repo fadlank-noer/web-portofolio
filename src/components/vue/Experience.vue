@@ -1,5 +1,5 @@
 <template>
-    <div id="anchor-experience" class="w-screen h-screen mx-auto px-10 py-10 flex flex-col lg:flex-row text-2xl">
+    <div id="anchor-experience" class="w-screen min-h-screen mx-auto px-4 md:px-10 py-10 flex flex-col lg:flex-row text-2xl bg-gradient-to-br from-gray-50 to-gray-100">
         <!-- Kata Pengantar -->
         <div class="w-full">
             <i class="text-3xl">Experience</i>
@@ -70,18 +70,22 @@
                 </div>
 
                 <!-- Work Experience -->
-                <div class="work-div basis-10/12 my-7">
-                    <div class="flex justify-between">
-                        <p>{{ e_item.date }}</p>
-                        <i>{{ e_item.company }}</i>
+                <div class="work-div basis-10/12 my-7 bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">{{ e_item.date }}</span>
+                        <i class="text-lg font-semibold text-(--primary-color)">{{ e_item.company }}</i>
                     </div>
 
-                    <p style="font-size: 2.5rem;" class="font-bold my-3">{{ e_item.title }}</p>
-                    <ul>
+                    <h3 class="text-3xl font-bold my-3 text-gray-800">{{ e_item.title }}</h3>
+                    <ul class="space-y-2">
                         <li
                             v-for="(d_item, d_index) in e_item.duties"
                             :key="d_index"
-                        >- {{d_item}}</li>
+                            class="flex items-start"
+                        >
+                            <span class="text-(--primary-color) mr-2 mt-1">•</span>
+                            <span class="text-gray-700">{{d_item}}</span>
+                        </li>
                     </ul>
                 </div>
 

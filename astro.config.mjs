@@ -14,21 +14,32 @@ import vue from "@astrojs/vue";
 
 export default defineConfig({
   vite: {
-        plugins: [tailwindcss()],
+    plugins: [tailwindcss()],
+    esbuild: {
+      jsxFactory: 'h',
+      jsxFragment: 'Fragment',
+      jsx: 'automatic',
     },
+    resolve: {
+      alias: {
+        'react': 'preact/compat',
+        'react-dom': 'preact/compat',
+      },
+    },
+  },
 
   integrations: [
-    alpinejs(), 
-    svelte(), 
+    alpinejs(),
+    svelte(),
     vue(),
     preact({
+      compat: true,
       include: ['**/preact/**'],
     }),
     react({
       include: ['**/react/**'],
     }),
     solidJs({
-      devtools: true,
       include: ['**/solid/**'],
     })
   ],
