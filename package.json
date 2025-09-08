@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.7",
+    "@astrojs/node": "^9.4.3",
     "@astrojs/preact": "^4.0.10",
     "@astrojs/react": "^4.2.5",
     "@astrojs/solid-js": "^5.0.9",
     "@astrojs/svelte": "^7.0.11",
+    "@astrojs/vercel": "^8.2.7",
     "@astrojs/vue": "^5.0.11",
     "@solidjs/router": "^0.15.3",
     "@tailwindcss/vite": "^4.1.4",

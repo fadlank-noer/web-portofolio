@@ -11,6 +11,7 @@ import react from "@astrojs/react";
 import solidJs from "@astrojs/solid-js";
 import svelte from "@astrojs/svelte";
 import vue from "@astrojs/vue";
+import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   env: {
@@ -28,6 +29,11 @@ export default defineConfig({
     },
   },
 
+  // Server Deployment
+  output: "server",
+  adapter: vercel(),
+
+  // Client Deployment
   integrations: [
     alpinejs(),
     svelte(),
