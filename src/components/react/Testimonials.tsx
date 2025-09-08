@@ -71,15 +71,15 @@ const Testimonials = () => {
   };
 
   return (
-    <div id="anchor-testimonials" className="w-screen min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-16 px-4 md:px-10">
+    <div id="anchor-testimonials" className="w-screen min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 overflow-x-hidden py-12 md:py-16 px-4 md:px-10">
       <div className="container mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <i className="text-3xl text-gray-400">Testimonials</i>
-          <h2 className="text-6xl font-bold my-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+        <div className="text-center mb-12 md:mb-16">
+          <i className="text-2xl md:text-3xl text-gray-400">Testimonials</i>
+          <h2 className="text-4xl md:text-6xl font-bold my-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
             What Clients Say
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto">
             Feedback from clients and colleagues I've had the pleasure to work with
           </p>
         </div>
@@ -87,7 +87,7 @@ const Testimonials = () => {
         {/* Testimonial Carousel */}
         <div className="relative max-w-4xl mx-auto">
           {/* Main Testimonial Card */}
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 min-h-[400px] flex flex-col justify-center">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-12 min-h-[360px] md:min-h-[400px] flex flex-col justify-center">
             <div className="text-center">
               {/* Quote Icon */}
               <div className="mb-6">
@@ -97,7 +97,7 @@ const Testimonials = () => {
               </div>
 
               {/* Testimonial Content */}
-              <blockquote className="text-xl md:text-2xl text-gray-700 font-medium leading-relaxed mb-8">
+              <blockquote className="text-lg md:text-2xl text-gray-700 font-medium leading-relaxed mb-6 md:mb-8">
                 "{testimonials[currentIndex].content}"
               </blockquote>
 
@@ -108,11 +108,11 @@ const Testimonials = () => {
 
               {/* Client Info */}
               <div className="flex items-center justify-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                   <img 
                     src={testimonials[currentIndex].avatar || `https://placehold.co/56x56/cccccc/000000/png?text=${testimonials[currentIndex].name.charAt(0)}`} 
                     alt={testimonials[currentIndex].name}
-                    className="w-14 h-14 rounded-full object-cover"
+                    className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.parentElement!.innerHTML = `<span class="text-white font-bold text-lg">${testimonials[currentIndex].name.charAt(0)}</span>`;
@@ -120,8 +120,8 @@ const Testimonials = () => {
                   />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-bold text-gray-800 text-lg">{testimonials[currentIndex].name}</h4>
-                  <p className="text-gray-600">{testimonials[currentIndex].role}</p>
+                  <h4 className="font-bold text-gray-800 text-base md:text-lg">{testimonials[currentIndex].name}</h4>
+                  <p className="text-gray-600 text-sm md:text-base">{testimonials[currentIndex].role}</p>
                   <p className="text-blue-600 font-medium">{testimonials[currentIndex].company}</p>
                 </div>
               </div>
@@ -131,20 +131,20 @@ const Testimonials = () => {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+            className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
             aria-label="Previous testimonial"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+            className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
             aria-label="Next testimonial"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>

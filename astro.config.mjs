@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 // Plugins
 import tailwindcss from "@tailwindcss/vite";
@@ -13,6 +13,11 @@ import svelte from "@astrojs/svelte";
 import vue from "@astrojs/vue";
 
 export default defineConfig({
+  env: {
+    schema: {
+      SECRET_RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
+    }
+  },
   vite: {
     plugins: [tailwindcss()],
     resolve: {

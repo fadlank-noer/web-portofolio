@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   
+  
   interface FormData {
     name: string;
     email: string;
@@ -68,25 +69,32 @@
 
     isSubmitting = true;
 
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Here you would normally send the data to your backend
-      console.log('Form submitted:', formData);
-      
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await res.json().catch(() => ({ ok: false, error: 'Invalid server response' }));
+
+      if (!res.ok || !result?.ok) {
+        throw new Error(result?.error || 'Failed to send message');
+      }
+
       isSubmitted = true;
       showSuccess = true;
-      
+
       // Reset form after success
       setTimeout(() => {
         formData = { name: '', email: '', subject: '', message: '' };
         isSubmitted = false;
         showSuccess = false;
       }, 3000);
-      
+
     } catch (error) {
       console.error('Submission error:', error);
+      // Optionally show toast/error UI here
     } finally {
       isSubmitting = false;
     }
@@ -101,15 +109,15 @@
   };
 </script>
 
-<div id="anchor-contact" class="w-screen min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 py-16 px-4 md:px-10">
+<div id="anchor-contact" class="w-screen min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 overflow-x-hidden py-12 md:py-16 px-4 md:px-10">
   <div class="container mx-auto max-w-4xl">
     <!-- Header -->
-    <div class="text-center mb-16" class:animate-fade-in={mounted}>
-      <i class="text-3xl text-purple-300">Get In Touch</i>
-      <h2 class="text-6xl font-bold my-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+    <div class="text-center mb-12 md:mb-16" class:animate-fade-in={mounted}>
+      <i class="text-2xl md:text-3xl text-purple-300">Get In Touch</i>
+      <h2 class="text-4xl md:text-6xl font-bold my-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
         Contact Me
       </h2>
-      <p class="text-xl text-purple-200 max-w-2xl mx-auto">
+      <p class="text-base md:text-xl text-purple-200 max-w-2xl mx-auto">
         Ready to start your next project? Let's discuss how we can work together.
       </p>
     </div>
@@ -117,7 +125,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <!-- Contact Info -->
       <div class="space-y-8" class:animate-slide-in-left={mounted}>
-        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20">
           <h3 class="text-2xl font-bold text-white mb-6">Let's Connect</h3>
           
           <div class="space-y-6">
@@ -170,7 +178,7 @@
       </div>
 
       <!-- Contact Form -->
-      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20" class:animate-slide-in-right={mounted}>
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20" class:animate-slide-in-right={mounted}>
         <form on:submit={handleSubmit} class="space-y-6">
           <!-- Name Field -->
           <div class="form-group">
@@ -182,7 +190,7 @@
                 type="text"
                 id="name"
                 bind:value={formData.name}
-                on:input={(e) => handleInput('name', e.target.value)}
+                on:input={(e) => handleInput('name', (e.target as HTMLInputElement)?.value || '')}
                 on:focus={() => handleFocus('name')}
                 on:blur={handleBlur}
                 class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
@@ -210,7 +218,7 @@
                 type="email"
                 id="email"
                 bind:value={formData.email}
-                on:input={(e) => handleInput('email', e.target.value)}
+                on:input={(e) => handleInput('email', (e.target as HTMLInputElement)?.value || '')}
                 on:focus={() => handleFocus('email')}
                 on:blur={handleBlur}
                 class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
@@ -238,7 +246,7 @@
                 type="text"
                 id="subject"
                 bind:value={formData.subject}
-                on:input={(e) => handleInput('subject', e.target.value)}
+                on:input={(e) => handleInput('subject', (e.target as HTMLInputElement)?.value || '')}
                 on:focus={() => handleFocus('subject')}
                 on:blur={handleBlur}
                 class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
@@ -265,7 +273,7 @@
               <textarea
                 id="message"
                 bind:value={formData.message}
-                on:input={(e) => handleInput('message', e.target.value)}
+                on:input={(e) => handleInput('message', (e.target as HTMLTextAreaElement)?.value || '')}
                 on:focus={() => handleFocus('message')}
                 on:blur={handleBlur}
                 rows="5"

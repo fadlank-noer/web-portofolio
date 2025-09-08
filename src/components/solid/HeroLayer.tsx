@@ -16,9 +16,9 @@ const HeroLayer = () => {
     }
 
     return (
-        <div id="anchor-hero" class="w-screen min-h-screen bg-(--primary-color) text-(--text-color-one) pb-7 text-4xl">
+        <div id="anchor-hero" class="w-screen min-h-screen bg-(--primary-color) text-(--text-color-one) overflow-x-hidden overflow-y-hidden pb-7 text-2xl md:text-4xl">
             {/* Main Container */}
-            <div class="container mx-auto w-full h-full flex flex-col lg:flex-row items-center justify-center px-4 py-8">
+            <div class="container mx-auto w-full h-full flex flex-col lg:flex-row items-center justify-center px-4 md:px-8 py-8">
                 
                 {/* Photo Comes First */}
                 <div class="img-container flex items-center">
@@ -39,15 +39,15 @@ const HeroLayer = () => {
                 <div class="text-and-button-container px-3">
                     
                     {/* Name and Job */}
-                    <p class="text-center my-8 lg:mt-0">MY NAME IS <b>FADLAN KAUTSAR NOER...</b></p>
-                    <p class="text-center"><span class="font-bold italic">Software Engineer</span> based in <span class="font-bold italic">Indonesia</span></p>
+                    <p class="text-center my-6 md:my-8 lg:mt-0">MY NAME IS <b>FADLAN KAUTSAR NOER...</b></p>
+                    <p class="text-center text-xl md:text-2xl"><span class="font-bold italic">Software Engineer</span> based in <span class="font-bold italic">Indonesia</span></p>
 
                     {/* CV Button */}
                     <button 
-                       class="flex items-center justify-center my-7 mx-auto w-100 h-15 bg-white text-(--primary-color) rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+                       class="flex items-center justify-center my-6 md:my-7 mx-auto w-full max-w-md h-12 md:h-15 bg-white text-(--primary-color) rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
                         onClick={() => openCV()}
                     >
-                        <p class="mr-3 font-semibold">Know me by my CV!</p>
+                        <p class="mr-3 font-semibold text-base md:text-lg">Know me by my CV!</p>
                         <div class="w-6 h-6 flex justify-center items-center bg-gradient-to-tr from-(--primary-color) via-(--primary-color) to-(--gradient-first) rounded">
                         <Assets 
                             assetName="diagonal-arrow"

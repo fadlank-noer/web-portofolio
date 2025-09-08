@@ -47,27 +47,27 @@ const ProjectGallery = () => {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <div id="anchor-projects" className="w-screen min-h-screen bg-gray-50 py-16 px-4 md:px-10">
+    <div id="anchor-projects" className="w-screen min-h-screen bg-gray-50 overflow-x-hidden py-12 md:py-16 px-4 md:px-10">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <i className="text-3xl text-gray-600">Portfolio</i>
-          <h2 className="text-6xl font-bold my-4 bg-gradient-to-r from-(--primary-color) via-(--secondary-color) to-(--gradient-first) text-transparent bg-clip-text">
+          <i className="text-2xl md:text-3xl text-gray-600">Portfolio</i>
+          <h2 className="text-4xl md:text-6xl font-bold my-4 bg-gradient-to-r from-(--primary-color) via-(--secondary-color) to-(--gradient-first) text-transparent bg-clip-text">
             My Projects
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto">
             A showcase of my work across different technologies and domains
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex justify-center mb-12">
-          <div className="flex flex-wrap gap-4 bg-white rounded-full p-2 shadow-lg">
+        <div className="flex justify-center mb-10 md:mb-12">
+          <div className="flex flex-wrap gap-3 md:gap-4 bg-white rounded-full p-2 shadow-lg">
             {categories.map(category => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-4 md:px-6 py-2.5 md:py-3 rounded-full font-medium transition-all duration-300 ${
                   selectedCategory === category
                     ? 'bg-(--primary-color) text-white shadow-md'
                     : 'text-gray-600 hover:text-(--primary-color) hover:bg-gray-100'
@@ -80,7 +80,7 @@ const ProjectGallery = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map(project => (
             <div
               key={project.id}
@@ -117,15 +117,15 @@ const ProjectGallery = () => {
               </div>
 
               {/* Project Info */}
-              <div className="p-6">
+              <div className="p-4 md:p-6">
                 <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800">{project.title}</h3>
                   <span className="text-xs font-medium text-[var(--primary-color)] bg-[var(--primary-color)]/10 px-2 py-1 rounded-full">
                     {project.category}
                   </span>
                 </div>
                 
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                <p className="text-gray-600 mb-4 text-sm md:text-base leading-relaxed">
                   {project.description}
                 </p>
 
@@ -163,7 +163,7 @@ const ProjectGallery = () => {
           }}
         >
           <div 
-            className="relative max-w-4xl max-h-[90vh] bg-white rounded-lg overflow-hidden shadow-2xl"
+            className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-lg overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
