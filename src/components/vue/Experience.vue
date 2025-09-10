@@ -1,5 +1,5 @@
 <template>
-    <div id="anchor-experience" class="w-screen min-h-screen mx-auto px-4 md:px-10 py-8 md:py-10 flex flex-col lg:flex-row gap-8 lg:gap-12 text-xl md:text-2xl bg-gradient-to-br from-gray-50 to-gray-100 overflow-x-hidden">
+    <div id="anchor-experience" class="w-screen min-h-screen mx-auto px-4 md:px-10 py-8 md:py-10 flex flex-col lg:flex-row gap-8 lg:gap-12 text-xl md:text-2xl bg-gradient-to-br from-gray-50 to-gray-100 overflow-x-hidden overflow-y-hidden">
         <!-- Kata Pengantar -->
         <div class="w-full">
             <i class="text-2xl md:text-3xl">Experience</i>
