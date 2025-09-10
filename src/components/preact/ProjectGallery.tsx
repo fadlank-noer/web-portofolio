@@ -30,7 +30,7 @@ const projects: Project[] = [
     category: "Fullstack",
     technologies: ["Astro", "React", "Vue", "Svelte", "Tailwind"],
     demoUrl: "#",
-    githubUrl: "#"
+    githubUrl: "https://github.com/fadlank-noer/web-portofolio"
   }
 ];
 
