@@ -21,8 +21,8 @@ const HeroLayer = () => {
             <div class="container mx-auto w-full h-full flex flex-col lg:flex-row items-center justify-center px-4 md:px-8 py-8">
                 
                 {/* Photo Comes First */}
-                <div class="img-container flex items-center">
-                    <div class="flex-container">        
+                <div class="img-container flex items-center justify-center w-full h-full">
+                    <div class="flex-container relative flex flex-col items-center justify-center w-full min-h-0">        
                         {/* Accesories */}
                         <Accesories assetNumber={1} />
                         <Accesories assetNumber={2} />
@@ -31,7 +31,7 @@ const HeroLayer = () => {
                         <Accesories assetNumber={5} />
                         
                         {/* Image Section */}
-                        <img src="/assets/half-body.png" class="w-90 z-2 relative"/>
+                        <img src="/assets/half-body.png" class="z-2 relative w-3/4 max-w-xs md:max-w-sm lg:max-w-md mx-auto block" alt="Foto Profil" />
                     </div>
                 </div>
 
