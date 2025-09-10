@@ -35,6 +35,9 @@ const HeroLayer = () => {
                     </div>
                 </div>
 
+                {/* Text and Social Media Container */}
+                <div class="flex flex-col items-center justify-center w-full lg:w-auto">
+                
                 {/* Text And Button CV */}
                 <div class="text-and-button-container px-3">
                     
@@ -71,11 +74,13 @@ const HeroLayer = () => {
                     <div class="floating-bar h-1.5 w-full lg:h-full lg:w-1.5 rounded-sm bg-(--text-color-two)"/>
 
                     {/* Socmed Links Horizontal */}
-                    <div class="w-65 mx-auto mt-5 flex flex-row lg:flex-col content-center justify-between">
+                    <div class="w-65 mx-auto mt-5 flex flex-row content-center justify-between">
                         <RoundedIcon assetName="github" class="lg:mb-2"/>
                         <RoundedIcon assetName="upwork" class="lg:mb-2"/>
                         <RoundedIcon assetName="x-com" class="lg:mb-2"/>
                     </div>
+                </div>
+                
                 </div>
                 
             </div>
