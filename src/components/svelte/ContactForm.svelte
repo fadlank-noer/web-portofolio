@@ -395,7 +395,7 @@
 
           <!-- reCAPTCHA v3 Badge -->
           <div class="form-group flex justify-center">
-            <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY} data-size="invisible"></div>
+            <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
           </div>
 
           <!-- Submit Button -->
