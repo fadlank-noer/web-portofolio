@@ -3,6 +3,8 @@
   declare global {
     interface Window {
       grecaptcha: {
+        ready: (callback: () => void) => void;
+        execute: (sitekey: string, options: { action: string }) => Promise<string>;
         render: (element: HTMLElement, options: { sitekey: string; theme?: string }) => void;
         getResponse: () => string;
         reset: () => void;
@@ -58,7 +60,7 @@
     }
   });
 
-  // Load reCAPTCHA v2 script
+  // Load reCAPTCHA v3 script
   const loadRecaptcha = () => {
     if (!RECAPTCHA_SITE_KEY) {
       console.error('reCAPTCHA site key is not configured');
@@ -69,34 +71,14 @@
     // Check if script is already loaded
     if (window.grecaptcha) {
       recaptchaLoaded = true;
-      // Render the reCAPTCHA widget if the element exists
-      setTimeout(() => {
-        const recaptchaElement = document.querySelector('.g-recaptcha') as HTMLElement;
-        if (recaptchaElement) {
-          window.grecaptcha.render(recaptchaElement, {
-            'sitekey': RECAPTCHA_SITE_KEY,
-            'theme': 'dark'
-          });
-        }
-      }, 100);
       return;
     }
 
     const script = document.createElement('script');
-    script.src = `https://www.google.com/recaptcha/api.js`;
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
     script.async = true;
     script.onload = () => {
       recaptchaLoaded = true;
-      // Render the reCAPTCHA widget after the script loads
-      setTimeout(() => {
-        const recaptchaElement = document.querySelector('.g-recaptcha') as HTMLElement;
-        if (recaptchaElement) {
-          window.grecaptcha.render(recaptchaElement, {
-            'sitekey': RECAPTCHA_SITE_KEY,
-            'theme': 'dark'
-          });
-        }
-      }, 100);
     };
     script.onerror = () => {
       console.error('Failed to load reCAPTCHA script');
@@ -106,17 +88,23 @@
   };
 
   // Get reCAPTCHA response token
-  const getRecaptchaToken = (): string => {
+  const getRecaptchaToken = async (): Promise<string> => {
     if (!recaptchaLoaded || !window.grecaptcha) {
       throw new Error('reCAPTCHA not loaded');
     }
 
-    const recaptchaResponse = window.grecaptcha.getResponse();
-    if (!recaptchaResponse) {
-      throw new Error('Please complete the reCAPTCHA');
-    }
-    
-    return recaptchaResponse;
+    return new Promise((resolve, reject) => {
+      window.grecaptcha.ready(() => {
+        window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' })
+          .then(token => {
+            resolve(token);
+          })
+          .catch(error => {
+            console.error('reCAPTCHA execution error:', error);
+            reject(new Error('Failed to execute reCAPTCHA. Please try again.'));
+          });
+      });
+    });
   };
 
   const validateField = (field: keyof FormData, value: string) => {
@@ -166,7 +154,7 @@
       // Get reCAPTCHA token
       let token = '';
       try {
-        token = getRecaptchaToken();
+        token = await getRecaptchaToken();
       } catch (error) {
         console.error('reCAPTCHA token error:', error);
         recaptchaError = error instanceof Error ? error.message : 'reCAPTCHA verification failed. Please try again.';
@@ -202,19 +190,11 @@
         formData = { name: '', email: '', subject: '', message: '' };
         isSubmitted = false;
         showSuccess = false;
-        // Reset reCAPTCHA
-        if (recaptchaLoaded && window.grecaptcha) {
-          window.grecaptcha.reset();
-        }
       }, 3000);
 
     } catch (error) {
       console.error('Submission error:', error);
       recaptchaError = 'An unexpected error occurred. Please try again later.';
-      // Reset reCAPTCHA on error
-      if (recaptchaLoaded && window.grecaptcha) {
-        window.grecaptcha.reset();
-      }
     } finally {
       isSubmitting = false;
     }
@@ -412,9 +392,10 @@
             {/if}
           </div>
 
-          <!-- reCAPTCHA -->
+
+          <!-- reCAPTCHA v3 Badge -->
           <div class="form-group flex justify-center">
-            <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
+            <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY} data-size="invisible"></div>
           </div>
 
           <!-- Submit Button -->
