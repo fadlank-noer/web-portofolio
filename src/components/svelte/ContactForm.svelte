@@ -1,6 +1,21 @@
+<script context="module" lang="ts">
+  // Declare grecaptcha on the window object
+  declare global {
+    interface Window {
+      grecaptcha: {
+        render: (element: HTMLElement, options: { sitekey: string; theme?: string }) => void;
+        getResponse: () => string;
+        reset: () => void;
+      };
+    }
+  }
+</script>
+
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   
+  // reCAPTCHA v3 site key from environment variables
+  const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
   
   interface FormData {
     name: string;
@@ -20,14 +35,89 @@
   let isSubmitted = false;
   let errors: Partial<FormData> = {};
   let showSuccess = false;
+  let recaptchaError = '';
 
   // Animation states
   let mounted = false;
   let focusedField = '';
 
+  // reCAPTCHA state
+  let recaptchaLoaded = false;
+  let recaptchaToken = '';
+
   onMount(() => {
     mounted = true;
+    loadRecaptcha();
   });
+
+  // Clean up reCAPTCHA script when component is destroyed
+  onDestroy(() => {
+    const recaptchaScript = document.querySelector('script[src^="https://www.google.com/recaptcha/api.js"]');
+    if (recaptchaScript) {
+      document.head.removeChild(recaptchaScript);
+    }
+  });
+
+  // Load reCAPTCHA v2 script
+  const loadRecaptcha = () => {
+    if (!RECAPTCHA_SITE_KEY) {
+      console.error('reCAPTCHA site key is not configured');
+      recaptchaError = 'reCAPTCHA is not properly configured. Please contact the site administrator.';
+      return;
+    }
+
+    // Check if script is already loaded
+    if (window.grecaptcha) {
+      recaptchaLoaded = true;
+      // Render the reCAPTCHA widget if the element exists
+      setTimeout(() => {
+        const recaptchaElement = document.querySelector('.g-recaptcha') as HTMLElement;
+        if (recaptchaElement) {
+          window.grecaptcha.render(recaptchaElement, {
+            'sitekey': RECAPTCHA_SITE_KEY,
+            'theme': 'dark'
+          });
+        }
+      }, 100);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js`;
+    script.async = true;
+    script.onload = () => {
+      recaptchaLoaded = true;
+      // Render the reCAPTCHA widget after the script loads
+      setTimeout(() => {
+        const recaptchaElement = document.querySelector('.g-recaptcha') as HTMLElement;
+        if (recaptchaElement) {
+          window.grecaptcha.render(recaptchaElement, {
+            'sitekey': RECAPTCHA_SITE_KEY,
+            'theme': 'dark'
+          });
+        }
+      }, 100);
+    };
+    script.onerror = () => {
+      console.error('Failed to load reCAPTCHA script');
+      recaptchaError = 'Failed to load reCAPTCHA. Please refresh the page and try again.';
+    };
+    document.head.appendChild(script);
+  };
+
+  // Get reCAPTCHA response token
+  const getRecaptchaToken = (): string => {
+    if (!recaptchaLoaded || !window.grecaptcha) {
+      throw new Error('reCAPTCHA not loaded');
+    }
+
+    const recaptchaResponse = window.grecaptcha.getResponse();
+    if (!recaptchaResponse) {
+      throw new Error('Please complete the reCAPTCHA');
+    }
+    
+    return recaptchaResponse;
+  };
 
   const validateField = (field: keyof FormData, value: string) => {
     switch (field) {
@@ -53,6 +143,9 @@
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
     
+    // Reset reCAPTCHA error
+    recaptchaError = '';
+    
     // Validate all fields
     const newErrors: Partial<FormData> = {};
     Object.keys(formData).forEach(key => {
@@ -70,16 +163,35 @@
     isSubmitting = true;
 
     try {
+      // Get reCAPTCHA token
+      let token = '';
+      try {
+        token = getRecaptchaToken();
+      } catch (error) {
+        console.error('reCAPTCHA token error:', error);
+        recaptchaError = error instanceof Error ? error.message : 'reCAPTCHA verification failed. Please try again.';
+        return;
+      }
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken: token
+        })
       });
 
       const result = await res.json().catch(() => ({ ok: false, error: 'Invalid server response' }));
 
       if (!res.ok || !result?.ok) {
-        throw new Error(result?.error || 'Failed to send message');
+        // Check if the error is related to reCAPTCHA
+        if (result?.error && result.error.includes('reCAPTCHA')) {
+          recaptchaError = result.error;
+        } else {
+          recaptchaError = result?.error || 'Failed to send message. Please try again.';
+        }
+        return;
       }
 
       isSubmitted = true;
@@ -90,11 +202,19 @@
         formData = { name: '', email: '', subject: '', message: '' };
         isSubmitted = false;
         showSuccess = false;
+        // Reset reCAPTCHA
+        if (recaptchaLoaded && window.grecaptcha) {
+          window.grecaptcha.reset();
+        }
       }, 3000);
 
     } catch (error) {
       console.error('Submission error:', error);
-      // Optionally show toast/error UI here
+      recaptchaError = 'An unexpected error occurred. Please try again later.';
+      // Reset reCAPTCHA on error
+      if (recaptchaLoaded && window.grecaptcha) {
+        window.grecaptcha.reset();
+      }
     } finally {
       isSubmitting = false;
     }
@@ -292,6 +412,11 @@
             {/if}
           </div>
 
+          <!-- reCAPTCHA -->
+          <div class="form-group flex justify-center">
+            <div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
+          </div>
+
           <!-- Submit Button -->
           <button
             type="submit"
@@ -325,6 +450,15 @@
           <div class="mt-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg animate-fade-in">
             <p class="text-green-300 text-center">
               🎉 Thank you for your message! I'll get back to you soon.
+            </p>
+          </div>
+        {/if}
+        
+        <!-- reCAPTCHA Error Message -->
+        {#if recaptchaError}
+          <div class="mt-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg animate-fade-in">
+            <p class="text-red-300 text-center">
+              ⚠️ {recaptchaError}
             </p>
           </div>
         {/if}

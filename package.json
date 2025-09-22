@@ -24,6 +24,7 @@
     "@types/react-dom": "^19.1.2",
     "alpinejs": "^3.14.9",
     "astro": "^5.7.5",
+    "google-recaptcha-v3": "^1.1.2",
     "preact": "^10.26.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
