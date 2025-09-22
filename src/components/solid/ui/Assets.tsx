@@ -6,6 +6,7 @@ import {
   EmailIcon,
   GithubIcon,
   PhoneIcon,
+  StarIcon,
   UpworkIcon,
   XSocialMedia
 } from "./Icons";
@@ -33,6 +34,7 @@ const options = (assetName: string, attribute: any) => {
     "diagonal-arrow": DiagonalArrowIcon,
     "email": EmailIcon,
     "phone": PhoneIcon,
+    "star": StarIcon,
     "x-com": XSocialMedia,
     "upwork": UpworkIcon,
     "github": GithubIcon

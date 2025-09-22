@@ -13,6 +13,35 @@ const TextAndButtonSection = () => {
         window.open('/files/cv-fadlan.pdf');
     }
 
+    // Function to render stars based on CV count
+    const renderStars = () => {
+        const stars = [];
+        const count = cvCount();
+        
+        for (let i = 0; i < count; i++) {
+            stars.push(
+                <div
+                    class="inline-block mx-1 animate-pulse"
+                    style={{
+                        "animation-delay": `${i * 0.2}s`,
+                        opacity: 0,
+                        "animation-fill-mode": 'forwards'
+                    }}
+                >
+                    <Assets
+                        assetName="star"
+                        attribute={() => ({
+                            class: "w-6 h-6",
+                            fill: "#FFD700"
+                        })}
+                    />
+                </div>
+            );
+        }
+        
+        return stars;
+    }
+
     return (
         <div class="text-and-button-container px-3">
             
@@ -38,6 +67,11 @@ const TextAndButtonSection = () => {
                 />
                 </div>
             </button>
+
+            {/* Stars display based on CV clicks */}
+            <div class="flex justify-center my-4 min-h-[2rem]">
+                {renderStars()}
+            </div>
 
             {/* Contact Me Through this Component*/}
             <ContactMe />
